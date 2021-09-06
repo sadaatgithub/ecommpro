@@ -12,7 +12,14 @@
         <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
           etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Make an account</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'app:all_products' %}" class="btn btn-primary my-1">Explore More</a>
+
+          {% else %}
+          <a href="#" class="btn btn-primary my-1">Make an account</a>
+          <span class="lead text-muted">Or</span>
+          <a href="login/" class="btn btn-primary my-1">Sign In</a>
+          {% endif %}
         </p>
       </div>
     </div>
@@ -39,8 +46,8 @@
             </div>
           </div>
         </div>
-
         {% endfor %}
+
 
       </div>
     </div>

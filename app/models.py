@@ -43,5 +43,3 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-
-# mam my detail.html file under product folder

@@ -1,16 +1,20 @@
 from django.http.request import HttpRequest
 from django.shortcuts import get_object_or_404, render
 from .models import Product,Category
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def categories(request):
     return {
         'categories': Category.objects.all()
     }
+def home(request):
+    products = Product.objects.all()
+    return render(request, 'app/home.html', {'products': products})
 
 def all_products(request):
     products = Product.objects.all()
-    return render(request, 'app/home.html', {'products': products})
+    return render(request, 'app/product/all_products.html', {'products': products})
 
 def ProductDetail(request,slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)

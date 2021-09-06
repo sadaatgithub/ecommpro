@@ -6,7 +6,8 @@
 
 <main class="pt-5">
     <div class="container">
-        <h1 class="h5">Shopping basket</h1>
+    {% if basket %}
+        <h1 class="h5 mb-2">Shopping basket</h1>
         {% for item in basket %}
 
         {% with product=item.product%}
@@ -23,12 +24,14 @@
                     <div class="col border-bottom">
                         <div class="row p-3">
                             <div class="col-6">Hardback Book</div>
-                            <div class="col-6 text-end"><span class="h6 fw-bold">Rs.{{ item.price }}</span></div>
+                            <div class="col-6 text-end"><span class="h6 fw-bold">Rs. {{ item.price }}</span></div>
+                        </div>
+                        <div class="row p-3">
                         </div>
                     </div>
                     <div class="col">
                         <div class="row p-3">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="select">Qty</label>
                                 <select id="select{{product.id}}">
                                     <option selected>
@@ -48,6 +51,8 @@
                                     Delete
                                 </button>
                             </div>
+                            <div class="col-6 text-end" >Rs.{{ item.price }}X {{item.qty}} = <span id="itemtotal">Total {{ item.total_price}}</span></div>
+
                         </div>
                     </div>
                 </div>
@@ -60,7 +65,18 @@
                 <div id="subtotal" class="d-inline-flex">{{ basket.get_total_price }}</div>
             </div>
         </div>
+        <div class="col-12 text-center my-5">
+                <a  class="btn btn-primary mx-1" type="button" role="button" href="{% url 'basket:checkout' %}">Place Order</a>
+           
+        </div>
     </div>
+    {% else %}
+    <div class="col-12 text-center my-5">
+    <p>Cart Is Empty</p>
+                <a  class="btn btn-primary mx-1" type="button" role="button" href="{% url 'app:home'%}">Continue Shopping</a>
+        </div>
+    {% endif %}
+
 </main>
 
 <script>

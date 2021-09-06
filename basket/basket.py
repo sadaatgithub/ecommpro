@@ -51,6 +51,7 @@ class Basket():
         return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
     
 
+
     def delete(self, product):
         """
         Delete item from session data

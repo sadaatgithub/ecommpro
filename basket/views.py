@@ -43,9 +43,17 @@ def basket_update(request):
     if request.POST.get('action') == 'post':
         product_id = int(request.POST.get('productid'))
         product_qty = int(request.POST.get('productqty'))
+        prod_price = request.POST.get('prodprice')
         basket.update(product=product_id, qty=product_qty)
-
         basketqty = basket.__len__()
         baskettotal = basket.get_total_price()
         response = JsonResponse({'qty': basketqty, 'subtotal': baskettotal})
         return response
+
+def checkout(request):
+    basket = Basket(request)
+    # baskettotal = basket.get_total_price()
+    # basketqty = basket.__len__()
+    # context = {'baskettotal':baskettotal,'basketqty':basketqty}
+
+    return render(request, 'app/basket/billing.html', {'basket':basket})
