@@ -13,7 +13,7 @@
         {% with product=item.product%}
         <div data-index="{{product.id}}" class="row mb-4 border product-item">
             <div class="col-md-3 col-lg-2 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image"
+                <img class="img-fluid mx-auto d-block" style="height:150px;width:100%;object-fit:cover;"alt="Responsive image"
                      src="{{ product.image.url }}">
             </div>
             <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
@@ -61,7 +61,7 @@
         {% endwith %}
         {% endfor %}
         <div class="col-12 text-end">
-            <div class="h6 fw-bold">Sub Total: Rs.
+            <div class="h6 fw-bold">Total : Rs.
                 <div id="subtotal" class="d-inline-flex">{{ basket.get_total_price }}</div>
             </div>
         </div>

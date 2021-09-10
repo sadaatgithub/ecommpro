@@ -77,5 +77,9 @@ class Basket():
         """
         return sum(item['qty'] for item in self.basket.values())
 
+    def clear(self):
+        del self.session
+        self.save()
+
     def save(self):
         self.session.modified = True

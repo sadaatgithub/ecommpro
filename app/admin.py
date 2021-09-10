@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, Payment, Customer,ShippingAddress
 # Register your models here.
 
 @admin.register(Category)
@@ -13,3 +13,10 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['in_stock','is_active']
     list_editable = ['price','in_stock']
     prepopulated_fields = {'slug':('title',)}
+
+
+
+admin.site.register(Payment)
+admin.site.register(Customer)
+admin.site.register(ShippingAddress)
+
